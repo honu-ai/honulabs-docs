@@ -1,0 +1,156 @@
+---
+title: "Prerequisites"
+description: "What you need installed to run the Honu Next SaaS Starter"
+---
+
+## Requirements overview
+
+Before running the project locally, make sure you have the following installed:
+
+- **Docker Desktop**: Runs Postgres and any other services via containers.
+- **Node.js (LTS) via nvm**: Recommended Node 20 LTS (Node 19+ supported).
+- **Git**: To clone the repository.
+- **pnpm**: Preferred package manager for this project.
+- **Stripe account + secret key**: Required for local development. You’ll use your test mode secret key.
+
+<Note>
+  A **Stripe account** is required even for local development so the app can make API calls in test mode. The Dockerized stack handles webhooks for you—no Stripe CLI needed.
+</Note>
+
+## GitHub setup
+
+Before cloning the repository, make sure your GitHub access is set up:
+
+- Create or sign in to your **GitHub** account
+- Configure your Git identity (once per machine):
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+- Set up **SSH** for passwordless access (recommended):
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+cat ~/.ssh/id_ed25519.pub
+# Copy the printed key and add it to GitHub → Settings → SSH and GPG keys
+```
+
+- Verify your connection:
+
+```bash
+ssh -T git@github.com
+```
+
+## Recommended: Cursor Pro + Honu MCP
+
+For the best developer experience and AI-assisted workflows:
+
+- Install **Cursor** and use a **Pro subscription**.
+- Connect the **Honu MCP** within Cursor. You can copy the required MCP configuration from your **Honu business dashboard**.
+  - Developers page URL format (replace with your business ID): `https://dashboard.honu.ai/business/{BUSINESS_ID}/developers`
+
+## Install Docker Desktop
+
+<AccordionGroup>
+  <Accordion icon="download" title="macOS">
+    1. Download Docker Desktop for Mac (Apple silicon or Intel) from [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+    2. Install and open Docker Desktop.
+    3. Verify installation:
+       
+       ```bash
+       docker --version
+       docker compose version
+       ```
+    
+    <Tip>Make sure Docker Desktop is running before starting the app.</Tip>
+  </Accordion>
+  <Accordion icon="download" title="Windows">
+    1. Install [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/).
+    2. Enable the recommended WSL 2 integration during setup.
+    3. Verify installation with `docker --version`.
+  </Accordion>
+  <Accordion icon="download" title="Linux">
+    1. Install the [Docker Engine](https://docs.docker.com/engine/install/) and Docker Compose for your distro.
+    2. Add your user to the `docker` group so you can run Docker without `sudo` (see [post-install steps](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user)).
+    3. Verify with `docker --version` and `docker compose version`.
+  </Accordion>
+</AccordionGroup>
+
+## Install Node.js with nvm
+
+We recommend using [nvm](https://github.com/nvm-sh/nvm) to manage Node versions and align with the project’s expected version.
+
+<Steps>
+<Step title="Install nvm">
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# Restart your shell, then load nvm (if needed)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+```
+
+</Step>
+
+<Step title="Install and use Node LTS (recommended)">
+
+```bash
+nvm install --lts
+nvm use --lts
+node -v
+pnpm -v
+```
+
+</Step>
+
+<Step title="Alternative: specific version">
+
+If you prefer a specific version, install Node 20.x or newer (Node 19+ supported):
+
+```bash
+nvm install 20
+nvm use 20
+```
+
+</Step>
+</Steps>
+
+## Install pnpm (via Corepack)
+
+We use **pnpm**. With modern Node versions, use Corepack to activate it:
+
+```bash
+corepack enable
+corepack prepare pnpm@latest --activate
+pnpm -v
+```
+
+If `corepack` is not found, ensure you restarted your shell after installing Node with `nvm` or update Node to the latest LTS.
+
+<Note>
+  On **Windows**, the `nvm-sh` installer above does not run natively. Use one of these options:
+  - Install **WSL 2** and follow the same Linux `nvm` steps inside your WSL shell.
+  - Use **nvm-windows**: [coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows). Commands are similar (`nvm install 20`, `nvm use 20`).
+</Note>
+
+## Stripe account and keys (required)
+
+1. Create or sign in to your account at [Stripe Dashboard](https://dashboard.stripe.com).
+2. Switch to **Test mode**.
+3. Copy your **Secret key** (starts with `sk_test_...`).
+4. Add it to your environment file as your Stripe secret. For example:
+
+```bash
+# .env
+STRIPE_SECRET_KEY=sk_test_********************************
+```
+
+The local Docker setup manages webhooks automatically. You do not need the Stripe CLI for local development.
+
+## Next step
+
+Once Docker and Node are ready, clone the SaaS Starter repository and follow the local run instructions in your project README. If you’re working through these docs, continue to [Local development](/development).
