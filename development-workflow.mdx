@@ -1,0 +1,119 @@
+---
+title: "Development Workflow"
+description: "Key development tools and workflows to help you build your product efficiently"
+---
+
+## Overview
+
+Once you have the app running locally, here are the key development tools and workflows to help you build your product efficiently.
+
+## Connect Honu MCP in Cursor
+
+The Honu MCP (Model Context Protocol) provides AI-powered assistance directly in Cursor for managing your business model and development workflow.
+
+<Note>
+  **Recommended Setup**: For the best experience with Honu MCP, we recommend using **Cursor Pro** with **Claude 4.5 Sonnet** or higher. This combination provides:
+  
+  - **Enhanced AI capabilities**: More sophisticated reasoning and code generation
+  - **Better context understanding**: Improved ability to understand complex business requirements
+  - **Advanced MCP integration**: Full access to all Honu MCP features and capabilities
+  - **Faster response times**: Optimized performance for development workflows
+  - **Reliable uptime**: Priority access to the latest AI models
+  
+  While Honu MCP works with other AI models, the Pro subscription with Claude 4.5 Sonnet delivers the most comprehensive and reliable development assistance.
+</Note>
+
+<Steps>
+<Step title="Get your MCP connection details">
+
+1. Log in to your [Honu platform dashboard](https://dashboard.honu.ai)
+2. Navigate to the **Deve Tools** section
+3. Copy your Cursor MCP connection configuration
+
+</Step>
+
+<Step title="Configure Cursor">
+
+1. Open Cursor Settings (Cmd/Ctrl + ,)
+2. Go to **Features** → **Model Context Protocol**
+3. Add a new MCP server with your Honu configuration
+4. Test the connection to ensure it's working
+
+</Step>
+
+<Step title="Start using Honu MCP">
+
+You can now start developing your product with the help of Honu MCP in Cursor:
+
+- **Review your Trello board**: Ask the Cursor AI agent to analyze your Trello product board and understand your project structure
+- **Task Execution**: Get the Cursor AI agent to execute the tasks on the Trello board
+- **Task Tracking**: As it executes the tasks, the Cursor AI agent will move the task in the correct column on the Trello board e.g. "In Progress" to "In Review" to "QA" to "Done".
+- **Collaboration**: The Cursor AI agent will request your approval to proceed with the task. You will need to provide QA before final sign off.
+- **Add Tasks**: You can ask the Cursor AI agent to add tasks to the Trello backlog.
+
+</Step>
+</Steps>
+
+## Component Development with Storybook
+
+Storybook helps you develop and test UI components in isolation, making it easier to build a consistent design system.
+
+### Start Storybook
+
+```bash
+pnpm storybook
+```
+
+This opens Storybook at `http://localhost:6006` where you can:
+
+- **View all components**: Browse your component library with live examples
+- **Test different states**: See how components look with various props and states
+- **Interactive development**: Modify component props in real-time using Storybook controls
+- **Visual testing**: Ensure components work across different scenarios
+
+### Component Story Structure
+
+Each component in the `components/` directory has a corresponding `.stories.tsx` file. For example:
+
+- `components/hero-section/HeroSection.tsx` → component implementation
+- `components/hero-section/HeroSection.stories.tsx` → Storybook stories
+
+### Best Practices
+
+- Create stories for different component states (default, loading, error, etc.)
+- Use Storybook controls to make props interactive
+- Test responsive behavior across different viewport sizes
+- Document component usage and props in your stories
+
+## Database Management with Drizzle Studio
+
+Drizzle Studio provides a visual interface to inspect and manage your database during development.
+
+### Start Drizzle Studio
+
+```bash
+pnpm db:studio
+```
+
+This opens Drizzle Studio in your browser where you can:
+
+- **Browse tables**: View all your database tables and their structure
+- **Inspect data**: See actual data in your tables with filtering and sorting
+- **Run queries**: Execute SQL queries directly against your database
+- **Monitor relationships**: Visualize foreign key relationships between tables
+
+### Database Schema Location
+
+- Schema definitions: `lib/db/schema.ts`
+- Database queries: `lib/db/queries.ts`
+- Migrations: `lib/db/migrations/`
+
+
+
+## Development Tips
+
+- **Hot Reload**: All three tools (Next.js dev server, Storybook, Drizzle Studio) support hot reloading
+- **Parallel Development**: Run multiple tools simultaneously in different terminal tabs
+- **Component-First**: Use Storybook to build components before integrating them into pages
+- **Data-Driven**: Use Drizzle Studio to understand your data structure and test queries
+- **Business Alignment**: Use Honu MCP to ensure your development aligns with your business strategy

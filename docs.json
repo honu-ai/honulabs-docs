@@ -23,7 +23,8 @@
           {
             "group": "Local Development",
             "pages": [
-              "start-local-development"
+              "start-local-development",
+              "development-workflow"
             ]
           }
         ]

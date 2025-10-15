@@ -26,6 +26,7 @@ cd <YOUR_REPOSITORY_DIRECTORY>
 - Open **Cursor** and select the cloned folder.
 - If you use Cursor Pro + Honu MCP, ensure your MCP is connected (see your Honu business dashboard Developers page).
 
+
 </Step>
 
 <Step title="Verify Docker and Node are available">
@@ -81,16 +82,15 @@ make run-dev
 ```
 
 What this command does:
-- **Docker Compose (local services)**: Brings up Postgres on port 5433 with a persistent volume and pgAdmin on `http://localhost:5051` for inspecting the database. It may also start a `stripe-cli` listener that forwards webhooks to your app.
+- **Docker Compose (local services)**: Brings up Postgres on port 5433 with a persistent volume. It may also start a `stripe-cli` listener that forwards webhooks to your app.
 - **Database setup**: Runs migrations and seeds your database using pnpm scripts.
 - **Dev server**: Launches the Next.js development server at your configured `HOST:PORT` (e.g. `localhost:3000`).
 
-pgAdmin quick reference:
-- **Open**: `http://localhost:5051`
-- **Login**: Email `admin@admin.com`, Password `admin`
-- **Connect to Postgres**: Register a server → Host `postgres` (Docker service name), Port `5432` (internal), DB `saas_db`, User `postgres`, Password `postgres`
-- **Purpose**: Inspect schemas/tables, browse data, and run SQL during development.
-- **Docs**: See [pgAdmin documentation](https://www.pgadmin.org/docs/).
+Drizzle Studio quick reference:
+- **Open**: Run `pnpm drizzle:studio` from your project root
+- **Purpose**: Modern database browser and query interface for inspecting schemas/tables, browsing data, and running SQL during development
+- **Features**: Visual table browser, SQL query editor, data editing capabilities, and schema visualization
+- **Docs**: See [Drizzle Studio documentation](https://orm.drizzle.team/studio)
 </Step>
 
 <Step title="Switch the landing page to Product mode">
